@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: "ghcr.io"
-  IMAGE: "nccloud/mayfly"
+  IMAGE: "yunussandikci/mayfly"
 
 jobs:
   release:
