@@ -11,9 +11,9 @@ WORKDIR /workspace
 RUN apk --no-cache add ca-certificates && update-ca-certificates
 
 RUN addgroup --gid 1000 app
-RUN adduser --disabled-password --gecos "" --home "/workspace" --ingroup app --no-create-home --uid 1000 app
+RUN adduser --disabled-password --gecos "" --ingroup app --no-create-home --uid 1000 app
 
-COPY --from=builder /build/manager manager
+COPY --from=builder /build/manager /workspace/manager
+
 USER 1000
-
-ENTRYPOINT ["./manager"]
+ENTRYPOINT ["/workspace/manager"]
