@@ -9,11 +9,11 @@ FROM alpine:3
 WORKDIR /workspace
 
 RUN apk --no-cache add ca-certificates && update-ca-certificates
+
 RUN addgroup --gid 1000 app
-RUN adduser -u 1000 -G app --no-create-home --disabled-password app
+RUN adduser --disabled-password --gecos "" --home "$(pwd)" --ingroup app --no-create-home --uid 1000 app
 
 COPY --from=builder /build/manager manager
-
 USER 1000
 
 ENTRYPOINT ["./manager"]
