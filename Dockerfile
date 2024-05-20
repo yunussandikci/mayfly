@@ -6,12 +6,12 @@ RUN CGO_ENABLED=0 go build -a -ldflags "-s -w" -o manager cmd/manager/main.go
 
 
 FROM alpine:3
-WORKDIR /workspace
-
 RUN apk --no-cache add ca-certificates && update-ca-certificates
 
 RUN addgroup --gid 1000 app
 RUN adduser --disabled-password --gecos "" --ingroup app --no-create-home --uid 1000 app
+
+WORKDIR /workspace
 
 COPY --from=builder /build/manager /workspace/manager
 
